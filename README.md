@@ -1,9 +1,9 @@
 # 📨 Sendbird Messaging App – FSD Test Task (05.2025)
 
-This project is a full-stack messaging application built for the FSD test using **Sendbird UIKit**, **Next.js**, and a custom **Express + PostgreSQL** backend. It enables user creation, profile updates, and 1-on-1 channel tracking via custom APIs.
+This project is a full-stack messaging app built using **Sendbird UIKit**, **Next.js**, and a custom **Express + PostgreSQL** backend. It implements dynamic user management, real-time chat channels, and event-based tracking per the FSD Test guidelines.
 
 > ✍️ Developed by **Les Paul Mendiola**  
-> 🔗 [Submission Repository](https://github.com/playmaker09/sendbird-messaging-app)
+> 🔗 [GitHub Repository](https://github.com/playmaker09/sendbird-messaging-app)
 
 ---
 
@@ -11,9 +11,9 @@ This project is a full-stack messaging application built for the FSD test using 
 
 **Frontend**:
 
-- [Next.js](https://nextjs.org/) (React Framework)
-- [Sendbird UIKit for React](https://sendbird.com/docs/chat/uikit/v3/react/overview)
+- Next.js (React Framework)
 - Tailwind CSS
+- Sendbird UIKit for React
 
 **Backend**:
 
@@ -27,43 +27,64 @@ This project is a full-stack messaging application built for the FSD test using 
 
 ### 👤 User Management
 
-- Auto-generates a user when the app is loaded.
-- Editable **nickname** and **profile image** via channel list header.
-- Backend persists user info (ID, nickname, profile URL, timestamps, etc.).
+- Auto-creates a user when the app is accessed.
+- Allows nickname and profile image updates via the channel list header.
+- Backend tracks user creation, updates, and soft deletes.
 
-### 💬 Channel Tracking
+### 💬 Channel Management
 
-- Automatically saves 1-on-1 channels when created.
-- Tracks:
+- Saves new **1-on-1 channels** created in Sendbird.
+- Persists:
   - Channel URL
   - Creator ID
   - Chatmate ID
-  - Deletion status
-  - Message count (default: 0)
   - Creation timestamp
-
-### 🛠 Backend APIs
-
-| Endpoint               | Description             |
-| ---------------------- | ----------------------- |
-| `POST /api/users`      | Save new user to DB     |
-| `PATCH /api/users/:id` | Update nickname/image   |
-| `POST /api/channels`   | Save new 1-on-1 channel |
+  - Message count (default 0)
+  - Deletion status
 
 ---
 
-## 🧑‍💻 Getting Started
+## 🛠 API Endpoints
+
+The project uses file-based API routing via Next.js (`pages/api/`). Below is the structure and usage:
+
+### 📁 `/pages/api/`
+
+#### 📂 `channel/`
+
+| File                         | Endpoint                               | Method  | Purpose                              |
+| ---------------------------- | -------------------------------------- | ------- | ------------------------------------ |
+| `create-channel.ts`          | `/api/channel/create-channel`          | `POST`  | Save new 1-on-1 channel details      |
+| `increment-message-count.ts` | `/api/channel/increment-message-count` | `PATCH` | Increment message count in a channel |
+
+#### 📂 `user/`
+
+| File             | Endpoint                | Method  | Purpose                                     |
+| ---------------- | ----------------------- | ------- | ------------------------------------------- |
+| `create-user.ts` | `/api/user/create-user` | `POST`  | Save new user to DB (triggered on app load) |
+| `update-user.ts` | `/api/user/update-user` | `PATCH` | Update nickname and/or profile image        |
+
+#### 📂 `sendbird/`
+
+| File           | Endpoint                  | Method | Purpose                                     |
+| -------------- | ------------------------- | ------ | ------------------------------------------- |
+| `token.ts`     | `/api/sendbird/token`     | `GET`  | Handle token-based auth (optional)          |
+| `token-get.ts` | `/api/sendbird/token-get` | `GET`  | Get tokens (optional; for internal testing) |
+
+---
+
+## ⚙ Setup Guide
 
 ### 🔑 Prerequisites
 
 - Node.js v18+
-- PostgreSQL (remote or local)
-- Sendbird account to get `APP_ID`
+- PostgreSQL (or use provided remote credentials)
+- Sendbird account (to obtain `APP_ID`)
 
-### 📁 Clone & Install
+### 📁 Installation
 
 ```bash
 git clone https://github.com/playmaker09/sendbird-messaging-app.git
 cd sendbird-messaging-app
-pnpm install
+npm install
 ```
