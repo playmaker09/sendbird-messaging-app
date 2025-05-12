@@ -17,7 +17,6 @@ This project is a full-stack messaging app built using **Sendbird UIKit**, **Nex
 
 **Backend**:
 
-- Node.js + Express.js
 - Prisma ORM
 - PostgreSQL
 
