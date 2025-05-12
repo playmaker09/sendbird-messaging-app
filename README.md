@@ -1,35 +1,69 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app) and [`Sendbird`](https://sendbird.com/docs/chat/uikit/v3/react/overview) for the messaging library.
-## Getting Started
+# 📨 Sendbird Messaging App – FSD Test Task (05.2025)
 
-First, run the development server:
+This project is a full-stack messaging application built for the FSD test using **Sendbird UIKit**, **Next.js**, and a custom **Express + PostgreSQL** backend. It enables user creation, profile updates, and 1-on-1 channel tracking via custom APIs.
+
+> ✍️ Developed by **Les Paul Mendiola**  
+> 🔗 [Submission Repository](https://github.com/playmaker09/sendbird-messaging-app)
+
+---
+
+## 📦 Tech Stack
+
+**Frontend**:
+
+- [Next.js](https://nextjs.org/) (React Framework)
+- [Sendbird UIKit for React](https://sendbird.com/docs/chat/uikit/v3/react/overview)
+- Tailwind CSS
+
+**Backend**:
+
+- Node.js + Express.js
+- Prisma ORM
+- PostgreSQL
+
+---
+
+## 🚀 Features
+
+### 👤 User Management
+
+- Auto-generates a user when the app is loaded.
+- Editable **nickname** and **profile image** via channel list header.
+- Backend persists user info (ID, nickname, profile URL, timestamps, etc.).
+
+### 💬 Channel Tracking
+
+- Automatically saves 1-on-1 channels when created.
+- Tracks:
+  - Channel URL
+  - Creator ID
+  - Chatmate ID
+  - Deletion status
+  - Message count (default: 0)
+  - Creation timestamp
+
+### 🛠 Backend APIs
+
+| Endpoint               | Description             |
+| ---------------------- | ----------------------- |
+| `POST /api/users`      | Save new user to DB     |
+| `PATCH /api/users/:id` | Update nickname/image   |
+| `POST /api/channels`   | Save new 1-on-1 channel |
+
+---
+
+## 🧑‍💻 Getting Started
+
+### 🔑 Prerequisites
+
+- Node.js v18+
+- PostgreSQL (remote or local)
+- Sendbird account to get `APP_ID`
+
+### 📁 Clone & Install
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/playmaker09/sendbird-messaging-app.git
+cd sendbird-messaging-app
+pnpm install
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
