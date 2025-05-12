@@ -60,7 +60,7 @@ export default async function handler(
     });
 
     return res.status(201).json({ message: "User created", chatUser });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("[CREATE_USER_ERROR]", error);
     return res.status(500).json({ message: "Internal Server Error" });
   }

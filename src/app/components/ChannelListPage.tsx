@@ -132,6 +132,10 @@ const ChannelListPage = () => {
               toast.error("Failed to update user");
               return;
             } else {
+              localStorage.setItem(
+                "chat_user",
+                JSON.stringify({ userId: res.userId, nickname: res.nickname })
+              );
               toast.success("Profile updated successfully!");
               setShowEditProfile(false);
             }
