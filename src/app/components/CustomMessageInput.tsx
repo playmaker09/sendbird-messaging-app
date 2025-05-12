@@ -61,7 +61,7 @@ const CustomMessageInput = () => {
 
     const params: FileMessageCreateParams = {
       file,
-      name: file.name,
+      fileName: file.name,
       fileSize: file.size,
       mimeType: file.type,
     };
