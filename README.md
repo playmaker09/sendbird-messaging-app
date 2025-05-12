@@ -65,10 +65,10 @@ The project uses file-based API routing via Next.js (`pages/api/`). Below is the
 
 #### 📂 `sendbird/`
 
-| File           | Endpoint                  | Method | Purpose                                     |
-| -------------- | ------------------------- | ------ | ------------------------------------------- |
-| `token.ts`     | `/api/sendbird/token`     | `GET`  | Handle token-based auth (optional)          |
-| `token-get.ts` | `/api/sendbird/token-get` | `GET`  | Get tokens (optional; for internal testing) |
+| File           | Endpoint                  | Method | Purpose                            |
+| -------------- | ------------------------- | ------ | ---------------------------------- |
+| `token.ts`     | `/api/sendbird/token`     | `GET`  | Handle token-based auth (optional) |
+| `token-get.ts` | `/api/sendbird/token-get` | `GET`  | Get tokens                         |
 
 ---
 
